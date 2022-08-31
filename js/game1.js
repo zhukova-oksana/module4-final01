@@ -14,7 +14,6 @@
     };
 
     return function start() {
-      let playerNumber = +prompt(`Загадай число от 1 до ${balls.player}`);
 
       const thinkNumber = (num) => {
         if ((num > balls.player) || (num < 0) || (num === 0) || (!Number(num)))  {
@@ -24,12 +23,12 @@
           return playerNumber;
         }
       }
-
+      let playerNumber = 0;
       thinkNumber(playerNumber);
 
-      const comp = (getRandomIntInclusive(1, balls.player)) % 2 ? 'четное' : 'нечетное';
+      const comp = Boolean((getRandomIntInclusive(1, balls.player)) % 2);
 
-      if ((((playerNumber % 2) === 0) && (comp === 'четное')) || (((playerNumber % 2) !== 0) && (comp === 'нечетное'))) {
+      if ((((playerNumber % 2) === 0) && comp) || (((playerNumber % 2) !== 0) && !comp)) {
         balls.bot += playerNumber;
         balls.player -= playerNumber;
       } else {

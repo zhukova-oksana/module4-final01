@@ -28,19 +28,21 @@
 
       const comp = Boolean((getRandomIntInclusive(1, balls.player)) % 2);
 
-      if ((((playerNumber % 2) === 0) && comp) || (((playerNumber % 2) !== 0) && !comp)) {
-        balls.bot += playerNumber;
-        balls.player -= playerNumber;
+      if ((((+playerNumber % 2) === 0) && comp) || (((+playerNumber % 2) !== 0) && !comp)) {
+        balls.bot += +playerNumber;
+        balls.player -= +playerNumber;
       } else {
-        balls.bot -= playerNumber;
-        balls.player += playerNumber;
+        balls.bot -= +playerNumber;
+        balls.player += +playerNumber;
       }
 
       switch (true) {
-        case balls.bot === 0:
-          return alert(`Бот проиграл. \nКоличество шаров бота = ${balls.bot}`);
-        case balls.player === 0:
-          return alert(`Вы проиграли. \nКоличество ваших шаров = ${balls.player}`);
+        case balls.bot <= 0:
+          balls.bot = 0;
+          return alert(`Бот проиграл.`);
+        case balls.player <= 0:
+          balls.player = 0;
+          return alert(`Вы проиграли.`);
       }
 
       return start();

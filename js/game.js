@@ -42,7 +42,6 @@ const marbles = (balls = [5, 5]) => {
 
   const result = balls.map((playerBalls, index) => {
     const result = playerBalls + (index === +winner ? -1 : 1) * bet;
-    console.log(result);
     isGameOver = true;
     switch (true) {
       case result <= 0: return 0;
@@ -57,7 +56,6 @@ const marbles = (balls = [5, 5]) => {
   alert(`${players[1]} поставили ${declinationWork(bet, ballsWords)}. ${players[0]} ${winner ? `` : `не `}угадал.
       СЧЕТ:
       ${result.map((playerBalls, index) => `${['У компьютера', '\n      У Вас'][index]}: ${declinationWork(playerBalls, ballsWords)}`).join('')}`);
-  console.log('winner', winner);
   if (isGameOver && !confirm(`${winner ? `${players[+!winner]} победил!\n` : `${players[+!winner]} победили!`} \nХотите сыграть еще?`)) return;
 
   return marbles(...(isGameOver ? [] : [result]));

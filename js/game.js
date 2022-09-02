@@ -30,7 +30,6 @@ const marbles = (balls = [5, 5]) => {
     return `${num} ${words[index]}`;
   };
 
-
   const bet = askNum(balls[1]);
 
   if (bet === null) return alert('Игра окончена!');
@@ -38,7 +37,6 @@ const marbles = (balls = [5, 5]) => {
   const guess = thinkNum(balls[1]) % 2;
 
   const winner = +bet % 2 === guess ? 1 : 0;
-
 
   const result = balls.map((playerBalls, index) => {
     const result = playerBalls + (index === +winner ? -1 : 1) * bet;
@@ -49,10 +47,9 @@ const marbles = (balls = [5, 5]) => {
       default:
         isGameOver = false;
     }
-
     return result;
   });
-  console.log('result', result);
+
   alert(`${players[1]} поставили ${declinationWork(bet, ballsWords)}. ${players[0]} ${winner ? `` : `не `}угадал.
       СЧЕТ:
       ${result.map((playerBalls, index) => `${['У компьютера', '\n      У Вас'][index]}: ${declinationWork(playerBalls, ballsWords)}`).join('')}`);
